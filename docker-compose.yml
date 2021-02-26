@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  localstack:
+    container_name: "localstack_main"
+    image: localstack/localstack
+    ports:
+      - "4566-4599:4566-4599"
+    environment:
+      - SERVICES=dynamodb

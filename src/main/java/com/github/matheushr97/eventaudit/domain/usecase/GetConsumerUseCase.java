@@ -12,8 +12,14 @@ import java.util.Optional;
 public class GetConsumerUseCase {
 
     private ConsumerRepository repository;
+    private LogConsumerActionUseCase logUseCase;
 
     public Optional<Consumer> getConsumer(Long id) {
+        var maybeConsumer = repository.findByID(id);
+        if (maybeConsumer.isPresent()) {
+            logUseCase.log(String.valueOf(id), "search");
+        }
+
         return repository.findByID(id);
     }
 
